@@ -1,11 +1,11 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import About from './About';
 import Header from './Header';
 import Movies from './Movies';
 
 const API_KEY   = '387edbffe136b089267267b98a26451d';
-const BASE_URL  = 'http://api.themoviedb.org/3/discover/movie?api_key='
+const BASE_URL  = 'https://api.themoviedb.org/4/discover/movie?api_key='
     + API_KEY;
 
 const GENRES = 'https://api.themoviedb.org/3/genre/movie/list?api_key='
@@ -106,6 +106,7 @@ class App extends React.Component {
       // Request and wait for data from remote server.
       fetch(url).then(response => response.json())
         .then((data) => {
+            // console.log(JSON.stringify(data.results));
             this.setState(
               {movies: data.results,
               totalPages: data.total_pages}
@@ -157,10 +158,11 @@ class App extends React.Component {
                   searchMe={this.searchMe}
                   />} />
               <Route 
-                path='/about/' 
+                path='/movies/about' 
                 component={About} />
+              <Redirect from="/" to="/movies" />
               <Route 
-                exact path='/' 
+                exact path='/movies' 
                 render={(props) => <Movies {...props} movies={this.state.movies} />}
                 />
             </div> 

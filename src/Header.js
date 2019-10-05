@@ -19,57 +19,69 @@ class Header extends React.Component {
 
     render(){
         return (
-            <div className="controls">
-                <label htmlFor="genre">Genre:&nbsp;</label>
-                <select 
-                    type="text" 
-                    id="genre" 
-                    name="genre"
-                    value={this.props.selectedGenre} 
-                    onChange={(event) => this.handleContentChange('genre', event)}
-                >
-                    {this.props.genres.map((item)=>(
-                    <option key={item.id} value={item.id}>{item.name}</option>
-                    ))}
-                </select>
+            <div>
+                <div className="banner">
+                    <h1>The Movie API</h1>
+                </div>
+                <nav>
+                    <div className="controlGroup">
+                        <label htmlFor="genre">Genre:&nbsp;</label>
+                        <select 
+                            type="text" 
+                            id="genre" 
+                            name="genre"
+                            value={this.props.selectedGenre} 
+                            onChange={(event) => this.handleContentChange('genre', event)}
+                        >
+                            {this.props.genres.map((item)=>(
+                            <option key={item.id} value={item.id}>{item.name}</option>
+                            ))}
+                        </select>
+                    </div>
 
-                <span>
-                    <label htmlFor="page">&nbsp;Page:&nbsp;</label>
-                    <input 
-                        type="number" 
-                        id="page" 
-                        name="page"
-                        value={this.props.selectedPage}
-                        onChange={(event) => this.handleContentChange('page', event)}/>
-                    <label htmlFor="page">&nbsp;of {this.props.totalPages}</label>
-                </span>
-                
-                <br />
-                <label htmlFor="startdate">Start date:&nbsp;</label>
-                <input 
-                    type="date" 
-                    id="startdate" 
-                    name="startdate"
-                    value={this.props.startDate} 
-                    onChange={(event) => this.handleContentChange('startDate', event)}
-                    min="1900-01-01" 
-                    max="2030-12-31"/>
+                    <div className="controlGroup">
+                        <label htmlFor="page">&nbsp;Page:&nbsp;</label>
+                        <input 
+                            type="number" 
+                            id="page" 
+                            name="page"
+                            value={this.props.selectedPage}
+                            onChange={(event) => this.handleContentChange('page', event)}/>
+                        <label htmlFor="page">&nbsp;of {this.props.totalPages}</label>
+                    </div>
+                    
+                    <div className="controlGroup">
+                        <label htmlFor="startdate">Start date:&nbsp;</label>
+                        <input 
+                            type="date" 
+                            id="startdate" 
+                            name="startdate"
+                            value={this.props.startDate} 
+                            onChange={(event) => this.handleContentChange('startDate', event)}
+                            min="1900-01-01" 
+                            max="2030-12-31"/>
+                    </div>
 
-                <label htmlFor="enddate">&nbsp;End date:&nbsp;</label>
-                <input 
-                    type="date" 
-                    id="enddate" 
-                    name="enddate"
-                    value={this.props.endDate}
-                    onChange={(event) => this.handleContentChange('endDate', event)}
-                    min="1900-01-01" 
-                    max="2030-12-31"/>
+                    <div className="controlGroup">
+                        <label htmlFor="enddate">&nbsp;End date:&nbsp;</label>
+                        <input 
+                            type="date" 
+                            id="enddate" 
+                            name="enddate"
+                            value={this.props.endDate}
+                            onChange={(event) => this.handleContentChange('endDate', event)}
+                            min="1900-01-01" 
+                            max="2030-12-31"/>
+                    </div>
 
-                {this.props.searching ? 
-                    <Link to='/about/' onClick={() => this.searchMe()}>About</Link> 
-                    : 
-                    <Link to='/' onClick={() => this.searchMe()}>Back to Movies</Link>
-                }
+                    <div className="controlGroup">
+                        {this.props.searching ? 
+                            <Link to='/movies/about' onClick={() => this.searchMe()}>About</Link> 
+                            : 
+                            <Link to='/movies' onClick={() => this.searchMe()}>Back to Movies</Link>
+                        }
+                    </div>
+                </nav>
             </div>
         );
     }
